@@ -343,6 +343,10 @@ create_partition() {
         BLANK1="108" # CM311-1a-YST: Must skip [ 108 MiB ]
         BOOT="512"   # A total of [ 1024 MiB ] can be used in this block, gave up [ 1024-512=512 MiB ]
         BLANK2="778" # Can set the rootfs partition after [ 1398 MiB ] of the total disk, Multi-backward offset 100 MiB, [ 1398-108-512=778 MiB ]
+    elif [[ "${AMLOGIC_SOC}" == "s905l3a" && "${boxid}" -eq "306" ]]; then
+        BLANK1="68"  # M401a: Must skip [ 68 MiB ]
+        BOOT="1024"  # A total of [ 1200 MiB ] can be used in this block, gave up [ 1120-1024=96 MiB ]
+        BLANK2="290" # Can set the rootfs partition after [ 1350 MiB ] of the total disk, Plus offset 32 MiB for safe, [ 1350-68-1024+32=290 MiB ]
     elif [[ "${AMLOGIC_SOC}" == "s905l3b" ]]; then
         BLANK1="128" # https://github.com/janko888/MBH-M30xA
         BOOT="513"   # M302A/M304A, Compatible with Android 4 and Android 9 firmware
